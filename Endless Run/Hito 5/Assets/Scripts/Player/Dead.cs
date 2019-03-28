@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Dead : MonoBehaviour
 {
+    private DeadMenu menu;
     // Use this for initialization
     void Start()
     {
@@ -14,6 +15,7 @@ public class Dead : MonoBehaviour
         if (col.gameObject.tag == "deadly")
         {
             Destroy(gameObject);
+            menu.dead = true;
         }
     }
 }
