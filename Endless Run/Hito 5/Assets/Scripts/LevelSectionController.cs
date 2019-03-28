@@ -7,23 +7,28 @@ public class LevelSectionController : MonoBehaviour
 
     public Camera currCamera;
     public GameObject section;
+    [HideInInspector]
+    public float borderDistance;   //Distance between controller and controller
+    public float bufferDistance;   //Buffer distamce so sections dont pop-in or out
     private Vector2 spawnPosition;
 
-    public static float levelSpeed = 2.5f;
-    public float sectionSeparation = 4f;
-
+    public float levelSpeed = .1f;
     private float waitTime;
-    private float timer;
+    private float timer = 0f;
 
     void Start()
     {
-        timer = 0f;
-        waitTime = sectionSeparation / levelSpeed;
-
+        waitTime = Section.sectionWidth / levelSpeed;
+        bufferDistance = Section.sectionWidth*20;
+        borderDistance = currCamera.orthographicSize * currCamera.aspect + bufferDistance;
+        spawnPosition.x = borderDistance;
+        spawnPosition.y = 0f;
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        waitTime = Section.sectionWidth / levelSpeed;
+
         timer += Time.deltaTime;
 
         if(timer > waitTime)
@@ -31,14 +36,13 @@ public class LevelSectionController : MonoBehaviour
             timer -= waitTime;
             CreateSection();
         }
+
     }
 
     void CreateSection()
     {
         if (currCamera.enabled && currCamera.orthographic)
         {
-            spawnPosition.y = currCamera.orthographicSize;
-            spawnPosition.x = position.y * currCamera.aspect;
             Object.Instantiate(section, spawnPosition, Quaternion.identity);
         }
     }
