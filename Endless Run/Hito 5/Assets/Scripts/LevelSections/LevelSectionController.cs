@@ -56,7 +56,7 @@ public class LevelSectionController : MonoBehaviour
         if (currCamera.enabled && currCamera.orthographic)
         {
             section = SelectSection();
-            Object.Instantiate(section, spawnPosition, Quaternion.identity);
+            Object.Instantiate(section, spawnPosition, Quaternion.identity, gameObject.transform);
             sectionCounter++;
         }
     }
