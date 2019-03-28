@@ -7,8 +7,10 @@ public class LevelSectionController : MonoBehaviour
 {
 
     public Camera currCamera;
+
     [HideInInspector]
     public float borderDistance;   //Distance between controller and controller
+    [HideInInspector]
     public float bufferDistance;   //Buffer distamce so sections dont pop-in or out
     private Vector2 spawnPosition;
 
