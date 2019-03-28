@@ -36,6 +36,6 @@ public class DeadMenu : MonoBehaviour
     public void Quit()
     {
         Debug.Log("Quitting game...");
-        Application.Quit();//cambiar por LoadScene cuando exista menu de inicio
+        Application.Quit();//cambiar por LoadScene cuando exista menu de inicio, igual en menu pausa
     }
 }
