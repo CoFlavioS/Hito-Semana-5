@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class GameHandler : MonoBehaviour
 {
-    public float health = 1f;
+    public static float health = 1f;
     public bool muerto = false;
     public Text marcador;
-    public float puntuacion = 0f;
+    public static float puntuacion = 0f;
     [SerializeField] public HealthBar healthBar;
 
     private void Start()
