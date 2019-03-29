@@ -22,6 +22,7 @@ public class DeadMenu : MonoBehaviour
         {
             deadMenuUI.SetActive(true);
             Time.timeScale = 0f;
+            //ScoreBoard.organize();
         }
     }
 
