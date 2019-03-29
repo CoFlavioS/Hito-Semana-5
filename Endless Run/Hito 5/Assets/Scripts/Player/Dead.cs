@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dead : MonoBehaviour
 {
-    private DeadMenu menu;
+    [SerializeField] private DeadMenu menu;
     // Use this for initialization
     void Start()
     {

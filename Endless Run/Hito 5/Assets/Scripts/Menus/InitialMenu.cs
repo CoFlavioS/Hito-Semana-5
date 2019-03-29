@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class InitialMenu : MonoBehaviour
 {
-    public GameObject initialMenuUI;
+    public static GameObject initialMenuUI;
     public bool isPlay = false;
 
     // Start is called before the first frame update
@@ -15,12 +14,12 @@ public class InitialMenu : MonoBehaviour
         initialMenuUI.SetActive(true);
         Time.timeScale = 0f;
     }
-
-    // Update is called once per frame
-    void Play()
+    
+    public void Play()
     {
-        initialMenuUI.SetActive(false);
         Time.timeScale = 1f;
+        initialMenuUI.SetActive(false);
+        isPlay = true;
     }
 
     public void Quit()
