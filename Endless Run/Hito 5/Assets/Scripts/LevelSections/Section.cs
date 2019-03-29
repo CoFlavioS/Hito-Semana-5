@@ -6,7 +6,7 @@ public class Section : MonoBehaviour
 {
     public GameObject controller;
     private LevelSectionController controlScript;
-    public static float sectionWidth = 1.5f;
+    public static float sectionWidth = 0.35f;
     private float scrollSpeed;
     private float leftBorder;
     void Start()
