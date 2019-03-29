@@ -14,7 +14,7 @@ public class Dead : MonoBehaviour
     {
         if (col.gameObject.tag == "deadly")
         {
-            Destroy(gameObject);
+            Debug.Log("marmota");
             menu.dead = true;
         }
     }
