@@ -27,7 +27,8 @@ public class LevelSectionController : MonoBehaviour
     void Start()
     {
         waitTime = Section.sectionWidth / levelSpeed;
-        bufferDistance = Section.sectionWidth*20;
+        timer = waitTime;
+        bufferDistance = Section.sectionWidth*5;
         borderDistance = currCamera.orthographicSize * currCamera.aspect + bufferDistance;
         spawnPosition.x = borderDistance;
         spawnPosition.y = 0f;
