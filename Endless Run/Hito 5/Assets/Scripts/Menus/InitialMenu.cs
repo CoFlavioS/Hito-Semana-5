@@ -5,6 +5,7 @@ using UnityEngine;
 public class InitialMenu : MonoBehaviour
 {
     public  GameObject initialMenuUI;
+    public GameObject inGameUI;
     public bool isPlay = false;
 
     // Start is called before the first frame update
@@ -12,6 +13,7 @@ public class InitialMenu : MonoBehaviour
     {
         isPlay = false;
         initialMenuUI.SetActive(true);
+        inGameUI.SetActive(false);
         Time.timeScale = 0f;
     }
     
@@ -19,6 +21,7 @@ public class InitialMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         initialMenuUI.SetActive(false);
+        inGameUI.SetActive(true);
         isPlay = true;
     }
 

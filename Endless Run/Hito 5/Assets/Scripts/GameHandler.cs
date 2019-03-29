@@ -5,14 +5,17 @@ using UnityEngine.UI;
 
 public class GameHandler : MonoBehaviour
 {
-    public static float health = 1f;
-    public bool muerto = false;
+    public static float health;
+    public static bool muerto = false;
     public Text marcador;
-    public static float puntuacion = 0f;
+    public static float puntuacion;
     [SerializeField] public HealthBar healthBar;
 
     private void Start()
     {
+        muerto = false;
+        health = 1f;
+        puntuacion = 0f;
         InvokeRepeating("HealthReduction", 2f, 1f);
         InvokeRepeating("addPoints", 2f, 1f);
     }
@@ -35,6 +38,5 @@ public class GameHandler : MonoBehaviour
     void addPoints()
     {
         puntuacion += 10f;
-        marcador.text = Mathf.Round(puntuacion).ToString();
     }
 }
