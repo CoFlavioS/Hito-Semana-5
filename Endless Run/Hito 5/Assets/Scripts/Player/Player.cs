@@ -56,4 +56,5 @@ public class Player : MonoBehaviour
     {
         velocity.y += gravity * Time.deltaTime;
     }
+
 }
