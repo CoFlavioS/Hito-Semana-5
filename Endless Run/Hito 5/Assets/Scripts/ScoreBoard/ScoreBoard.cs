@@ -7,7 +7,8 @@ using System.Linq;
 
 public class ScoreBoard : MonoBehaviour
 {
-    private DeadMenu menu;
+    public GameObject scoreBoardUI;
+    public static bool scoreBoardActive = false;
     private Score1 sc1;
     private Score2 sc2;
     private Score3 sc3;
@@ -24,6 +25,7 @@ public class ScoreBoard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        scoreBoardUI.SetActive(false);
         newScore = "" + GameHandler.puntuacion;
         finalScore = score = System.IO.File.ReadAllLines(@"E:\Escritorio\uni\core\hackaton_2\Hito-Semana-5\Endless Run\Hito 5\Assets\Scripts\TextOfScore\Scores.txt");
     }
@@ -31,7 +33,14 @@ public class ScoreBoard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (scoreBoardActive)
+        {
+            scoreBoardUI.SetActive(true);
+        }
+        else
+        {
+            scoreBoardUI.SetActive(false);
+        }
     }
     
     public static void organize()
@@ -52,5 +61,10 @@ public class ScoreBoard : MonoBehaviour
         scores.RemoveAt(5);
         scores.CopyTo(finalScore);
         System.IO.File.WriteAllLines(@"Assets\Scripts\TextOfScore\Scores.txt", finalScore);
+    }
+    public void back()
+    {
+         scoreBoardActive = false;
+         InitialMenu.initialMenuActive = true;
     }
 }

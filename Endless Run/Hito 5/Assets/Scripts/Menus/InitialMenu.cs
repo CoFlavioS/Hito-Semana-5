@@ -6,6 +6,7 @@ public class InitialMenu : MonoBehaviour
 {
     public  GameObject initialMenuUI;
     public bool isPlay = false;
+    public static bool initialMenuActive;
 
     // Start is called before the first frame update
     void Start()
@@ -13,12 +14,23 @@ public class InitialMenu : MonoBehaviour
         isPlay = false;
         initialMenuUI.SetActive(true);
         Time.timeScale = 0f;
+        initialMenuActive = true;
     }
-    
+    void Update()
+    {
+        if (initialMenuActive)
+        {
+            initialMenuUI.SetActive(true);
+        }
+        else
+        {
+            initialMenuUI.SetActive(false);
+        }
+    }
     public void Play()
     {
         Time.timeScale = 1f;
-        initialMenuUI.SetActive(false);
+        initialMenuActive = false;
         isPlay = true;
     }
 
@@ -26,5 +38,11 @@ public class InitialMenu : MonoBehaviour
     {
         Debug.Log("Quitting game...");
         Application.Quit();
+    }
+
+    public void OpenScoreBoard()
+    {
+        initialMenuActive = false;
+        ScoreBoard.scoreBoardActive = true;
     }
 }
