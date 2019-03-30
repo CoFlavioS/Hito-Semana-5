@@ -7,22 +7,25 @@ public class DeadMenu : MonoBehaviour
 {
     public GameObject deadMenuUI;
     public bool dead;
+    public bool scoreUpdate;
 
     // Start is called before the first frame update
     void Start()
     {
         deadMenuUI.SetActive(false);
         dead = false;
+        scoreUpdate = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (dead)
+        if (dead && !scoreUpdate)
         {
             ScoreBoard.organize();
             deadMenuUI.SetActive(true);
             Time.timeScale = 0f;
+            scoreUpdate = true;
         }
     }
 

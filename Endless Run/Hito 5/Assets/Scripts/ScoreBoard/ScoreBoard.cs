@@ -26,13 +26,13 @@ public class ScoreBoard : MonoBehaviour
     void Start()
     {
         scoreBoardUI.SetActive(false);
-        newScore = "" + GameHandler.puntuacion;
-        finalScore = score = System.IO.File.ReadAllLines(@"E:\Escritorio\uni\core\hackaton_2\Hito-Semana-5\Endless Run\Hito 5\Assets\Scripts\TextOfScore\Scores.txt");
+        finalScore = score = System.IO.File.ReadAllLines(@"Assets\Scripts\TextOfScore\Scores.txt");
     }
 
     // Update is called once per frame
     void Update()
     {
+        newScore = "" + GameHandler.puntuacion;
         if (scoreBoardActive)
         {
             scoreBoardUI.SetActive(true);
@@ -50,6 +50,8 @@ public class ScoreBoard : MonoBehaviour
         scores.Add(newScore);
 
         scores.CopyTo(stringArr);
+
+        Debug.Log("varrdvubfjybwvhjyfk");
 
         intArr = Array.ConvertAll(stringArr, delegate (string s) { return int.Parse(s); });
         Array.Sort(intArr);

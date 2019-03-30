@@ -16,9 +16,9 @@ public class Dead : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D col)
     {
+            Debug.Log("marmota");
         if (col.gameObject.tag == "deadly")
         {
-            Debug.Log("marmota");
             menu.dead = true;
         }
     }
