@@ -21,11 +21,10 @@ public class Section : MonoBehaviour
 
     public void instantiateCollectable(GameObject collectable)
     {
-
         collectablePos = transform.Find("sun or water");
-        Debug.Log(collectable);
-        Debug.Log(collectablePos);
-        Object.Instantiate(collectable, collectablePos.transform);
+        collectable = Object.Instantiate(collectable, collectablePos.transform.position, Quaternion.identity);
+
+        collectable.GetComponent<Collectable>().setFollowing(collectablePos);
     }
 
     void FixedUpdate()
