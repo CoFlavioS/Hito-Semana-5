@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
 
     private Controller2D controller;
+    public Animator animator;
 
     private Vector2 directionalInput;
 
@@ -26,6 +27,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        animator.SetFloat("velocityY", velocity.y);
+
         CalculateVelocity();
 
         controller.Move(velocity * Time.deltaTime, directionalInput);
