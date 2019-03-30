@@ -6,8 +6,12 @@ public class Dead : MonoBehaviour
 {
     [SerializeField] private DeadMenu menu;
     // Use this for initialization
-    void Start()
+    void Update()
     {
+        if (GameHandler.muerto)
+        {
+            menu.dead = true;
+        }
     }
 
     void OnCollisionStay2D(Collision2D col)

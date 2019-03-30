@@ -5,6 +5,7 @@ using UnityEngine;
 public class InitialMenu : MonoBehaviour
 {
     public  GameObject initialMenuUI;
+    public GameObject inGameUI;
     public bool isPlay = false;
     public static bool initialMenuActive;
 
@@ -13,6 +14,7 @@ public class InitialMenu : MonoBehaviour
     {
         isPlay = false;
         initialMenuUI.SetActive(true);
+        inGameUI.SetActive(false);
         Time.timeScale = 0f;
         initialMenuActive = true;
     }
@@ -31,6 +33,7 @@ public class InitialMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         initialMenuActive = false;
+        inGameUI.SetActive(true);
         isPlay = true;
     }
 
