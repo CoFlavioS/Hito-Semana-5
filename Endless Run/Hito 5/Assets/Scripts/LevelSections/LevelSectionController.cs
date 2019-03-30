@@ -15,15 +15,15 @@ public class LevelSectionController : MonoBehaviour
     private Vector2 spawnPosition;
 
     private GameObject section;
-    private GameObject[] commonSections;
-    private GameObject[] dropletSections;
-    private GameObject[] sunSections;
+    private GameObject[] sectionArray;
     private int sectionCounter = 0;
-    public int sunSectionRanFreq = 20;    //Randonmly, 1 in every X will be a sun section
-    public int dropletSectionFreq = 5;    //How many sections will be spawn before a drop appears
-    public int dropletSectionVar = 2;     //Range of variation in frequency. Calculated after each 
+    public float sunSectionChance = 10f;//p chance section has a sun
+    public int dropletSectionWait = 5;    //How many sections will be spawn before a drop appears
+    public int dropletSectionVar = 1;     //Range of variation in wait. Calculated after each 
     private int droptletCounter;          //non droplet section spawned.
 
+    public GameObject collectableSun;
+    public GameObject collectableDroplet;
 
     public float levelSpeed = 1f;
     private float waitTime;
@@ -38,11 +38,21 @@ public class LevelSectionController : MonoBehaviour
         spawnPosition.x = borderDistance;
         spawnPosition.y = 0f;
 
-        droptletCounter = dropletSectionFreq + Random.Range(0, dropletSectionVar);
+        droptletCounter = dropletSectionWait + Random.Range(-dropletSectionVar, dropletSectionVar);
 
-        commonSections = Resources.LoadAll("CommonSections", typeof(GameObject)).Cast<GameObject>().ToArray();
-        dropletSections = Resources.LoadAll("DropletSections", typeof(GameObject)).Cast<GameObject>().ToArray();
-        sunSections = Resources.LoadAll("SunSections", typeof(GameObject)).Cast<GameObject>().ToArray();
+        /**
+         *  Descomentar esto cuando solo haya secciones validas en la carpeta Resources
+         */
+        //sectionArray = Resources.LoadAll("/", typeof(GameObject)).Cast<GameObject>().ToArray();
+        /**
+         */
+
+        /**
+         *  Comentar esto para hacer pruebas con los prefabs en resources
+         */
+        section = Resources.Load("SectionBase", typeof(GameObject)) as GameObject;
+        /**
+         */      
     }
 
     void FixedUpdate()
@@ -63,15 +73,43 @@ public class LevelSectionController : MonoBehaviour
     {
         if (currCamera.enabled && currCamera.orthographic)
         {
-            section = SelectSection();
-            Object.Instantiate(section, spawnPosition, Quaternion.identity, gameObject.transform);
+
+            /**
+             *  Descomentar esto cuando solo haya secciones validas en la carpeta Resources
+             */
+            //section = SelectSection();
+            /**
+             * 
+             */
+
+            section = Object.Instantiate(section, spawnPosition, Quaternion.identity, gameObject.transform);
+
+            GenerateCollectable();
+
+
             sectionCounter++;
         }
     }
 
-    GameObject SelectSection()
+    private GameObject SelectSection()
     {
-        
-        return commonSections[Random.Range(0, commonSections.Length)];
+        return sectionArray[Random.Range(0, sectionArray.Length)];
+    }
+
+    private void GenerateCollectable()
+    {
+        Debug.Log("Section Counter: " + sectionCounter + " Droptlet Counter: " + droptletCounter);
+        if(sectionCounter >= droptletCounter)
+        {
+            Debug.Log("Generando gota");
+            section.GetComponent<Section>().instantiateCollectable(collectableDroplet);
+
+            sectionCounter = 0;
+            droptletCounter = dropletSectionWait + Random.Range(-dropletSectionVar, dropletSectionVar);
+
+        } else if(Random.value <= sunSectionChance)
+        {
+            section.GetComponent<Section>().instantiateCollectable(collectableSun);
+        }
     }
 }
