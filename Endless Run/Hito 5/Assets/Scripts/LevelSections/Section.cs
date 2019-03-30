@@ -9,13 +9,24 @@ public class Section : MonoBehaviour
     public static float sectionWidth = 45f;
     private float scrollSpeed;
     private float leftBorder;
+
+    private Transform collectablePos;
+
     void Start()
-    {
+   {
         controller = GameObject.FindWithTag("GameController");
         controlScript = controller.GetComponent<LevelSectionController>();
         leftBorder = -controlScript.borderDistance;
     }
 
+    public void instantiateCollectable(GameObject collectable)
+    {
+
+        collectablePos = transform.Find("sun or water");
+        Debug.Log(collectable);
+        Debug.Log(collectablePos);
+        Object.Instantiate(collectable, collectablePos.transform);
+    }
 
     void FixedUpdate()
     {

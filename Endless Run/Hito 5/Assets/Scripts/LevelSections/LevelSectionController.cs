@@ -15,15 +15,15 @@ public class LevelSectionController : MonoBehaviour
     private Vector2 spawnPosition;
 
     private GameObject section;
-    private GameObject[] commonSections;
-    private GameObject[] dropletSections;
-    private GameObject[] sunSections;
+    private GameObject[] sectionArray;
     private int sectionCounter = 0;
     public int sunSectionRanFreq = 20;    //Randonmly, 1 in every X will be a sun section
     public int dropletSectionFreq = 5;    //How many sections will be spawn before a drop appears
     public int dropletSectionVar = 2;     //Range of variation in frequency. Calculated after each 
     private int droptletCounter;          //non droplet section spawned.
 
+    public GameObject collectableSun;
+    public GameObject collectableDroplet;
 
     public float levelSpeed = 1f;
     private float waitTime;
@@ -40,9 +40,8 @@ public class LevelSectionController : MonoBehaviour
 
         droptletCounter = dropletSectionFreq + Random.Range(0, dropletSectionVar);
 
-        commonSections = Resources.LoadAll("CommonSections", typeof(GameObject)).Cast<GameObject>().ToArray();
-        dropletSections = Resources.LoadAll("DropletSections", typeof(GameObject)).Cast<GameObject>().ToArray();
-        sunSections = Resources.LoadAll("SunSections", typeof(GameObject)).Cast<GameObject>().ToArray();
+        //sectionArray = Resources.LoadAll("/", typeof(GameObject)).Cast<GameObject>().ToArray();
+        section = Resources.Load("SectionBase", typeof(GameObject)) as GameObject;
     }
 
     void FixedUpdate()
@@ -63,15 +62,19 @@ public class LevelSectionController : MonoBehaviour
     {
         if (currCamera.enabled && currCamera.orthographic)
         {
-            section = SelectSection();
-            Object.Instantiate(section, spawnPosition, Quaternion.identity, gameObject.transform);
+            //section = SelectSection();
+            section = Object.Instantiate(section, spawnPosition, Quaternion.identity, gameObject.transform);
+            Debug.Log("miau" + collectableSun.name);
+            Debug.Log("miau" + section.name);
+            section.GetComponent<Section>().instantiateCollectable(collectableDroplet);
+
             sectionCounter++;
         }
     }
 
     GameObject SelectSection()
     {
-        
-        return commonSections[Random.Range(0, commonSections.Length)];
+        return sectionArray[0];
     }
+
 }
