@@ -6,7 +6,7 @@ public class Section : MonoBehaviour
 {
     public GameObject controller;
     private LevelSectionController controlScript;
-    public static float sectionWidth = 0.1f;
+    public static float sectionWidth = 45f;
     private float scrollSpeed;
     private float leftBorder;
     void Start()
@@ -19,7 +19,7 @@ public class Section : MonoBehaviour
 
     void FixedUpdate()
     {
-        scrollSpeed = controlScript.levelSpeed;
+        scrollSpeed = controlScript.levelSpeed * Time.deltaTime;
         transform.position += Vector3.left * scrollSpeed;
         if(transform.position.x < leftBorder)
         {

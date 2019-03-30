@@ -5,7 +5,7 @@ using UnityEngine;
 public class Controles : MonoBehaviour
 {
     public bool grounded = false;
-    public float jumPower = 10f;
+    public float jumPower = 20f;
     private Rigidbody2D rb2d;
     private bool jump;
 

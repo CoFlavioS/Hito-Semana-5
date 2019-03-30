@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class Dead : MonoBehaviour
 {
-    private DeadMenu menu;
+    [SerializeField] private DeadMenu menu;
     // Use this for initialization
-    void Start()
+    void Update()
     {
+        if (GameHandler.muerto)
+        {
+            menu.dead = true;
+        }
     }
 
     void OnCollisionStay2D(Collision2D col)
     {
         if (col.gameObject.tag == "deadly")
         {
-            Destroy(gameObject);
+            Debug.Log("marmota");
             menu.dead = true;
         }
     }
