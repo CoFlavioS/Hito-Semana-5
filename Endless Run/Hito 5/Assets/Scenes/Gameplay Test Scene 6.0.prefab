@@ -970,7 +970,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Game Name
+  m_Text: Little Seed
 --- !u!1 &683511715024680771
 GameObject:
   m_ObjectHideFlags: 0
