@@ -40,19 +40,7 @@ public class LevelSectionController : MonoBehaviour
 
         droptletCounter = dropletSectionWait + Random.Range(-dropletSectionVar, dropletSectionVar);
 
-        /**
-         *  Descomentar esto cuando solo haya secciones validas en la carpeta Resources
-         */
-        //sectionArray = Resources.LoadAll("/", typeof(GameObject)).Cast<GameObject>().ToArray();
-        /**
-         */
-
-        /**
-         *  Comentar esto para hacer pruebas con los prefabs en resources
-         */
-        section = Resources.Load("SectionBase", typeof(GameObject)) as GameObject;
-        /**
-         */      
+        sectionArray = Resources.LoadAll("/", typeof(GameObject)).Cast<GameObject>().ToArray();
     }
 
     void FixedUpdate()
@@ -73,14 +61,8 @@ public class LevelSectionController : MonoBehaviour
     {
         if (currCamera.enabled && currCamera.orthographic)
         {
-
-            /**
-             *  Descomentar esto cuando solo haya secciones validas en la carpeta Resources
-             */
-            //section = SelectSection();
-            /**
-             * 
-             */
+        
+            section = SelectSection();
 
             section = Object.Instantiate(section, spawnPosition, Quaternion.identity, gameObject.transform);
 
