@@ -4,7 +4,7 @@
                 {
                     collisions.collidedObj = hit.collider.gameObject;
                     onCollisionObject(collisions.collidedObj);
-                }                  moveAmount.y = (hit.distance - skinWidth) * directionY;                 rayLength = hit.distance;                  collisions.below = directionY == -1;                 collisions.above = directionY == 1;             }             else             {                 collisions.collidedObj = null;             }         }     }        /** Meter aqui funciones al chocar con objeto (segun su tag)      */     private void onCollisionObject(GameObject collidedObject)
+                }                  //moveAmount.y = (hit.distance - skinWidth) * directionY;                 rayLength = hit.distance;                  collisions.below = directionY == -1;                 collisions.above = directionY == 1;             }             else             {                 collisions.collidedObj = null;             }         }     }        /** Meter aqui funciones al chocar con objeto (segun su tag)      */     private void onCollisionObject(GameObject collidedObject)
     {
         switch (collidedObject.tag)
         {             case "deadly":                 Destroy(gameObject);                 break;
